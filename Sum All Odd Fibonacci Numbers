@@ -1,0 +1,147 @@
+/*Sum All Odd Fibonacci Numbers
+Return the sum of all odd Fibonacci numbers up to and including the passed number if it is a Fibonacci number. The first few numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8, and each subsequent number is the sum of the previous two numbers.
+
+As an example, passing 4 to the function should return 5 because all the odd Fibonacci numbers under 4 are 1, 1, and 3.*/
+
+function sumFibs(num) {
+  var fibArray = [],
+      pos1 = 1,
+      pos2 = 1,
+      pos3 = 0,
+      total = 0;
+  
+  while (pos1 <= num) {
+    fibArray.push(pos1);
+    pos3 = pos1 + pos2;
+    pos1 = pos2;
+    pos2 = pos3;
+  }
+  
+  fibArray.forEach(function(val) {
+    if ( val % 2 !== 0 ) total += val;
+  });
+  
+  return total;
+  
+  
+}
+
+sumFibs(4);
+
+<--- Next solution ---->
+
+function sumFibs(num) {
+  // First define the three key variables
+  var prevNumber = 0;
+  var currNumber = 1;
+  var fibTotal = 0;
+
+  while (currNumber <= num) {
+  	// Check if the current Fibonacci number is odd, and add it to the total if it is.
+    if (currNumber % 2 !== 0) {
+      fibTotal += currNumber;
+    }
+
+    // Determine the next Fibonacci number by adding the previous and current
+    var nextNumber = prevNumber + currNumber;
+    // Update the previous number to the current value
+    prevNumber = currNumber;
+    // Set the current number to the next Fibonacci in the sequence
+    currNumber = nextNumber;
+  }
+
+ // Finally, return the total
+ return fibTotal;
+}
+
+<--- Next solution---->
+
+function sumFibs(num) {  
+  var prev = 0;
+  var curr = 1;
+  var fib = 1;
+  var oddFib = 0;
+  while(fib <= num){
+    if ((fib % 2) > 0) oddFib += fib;
+    fib = curr + prev;
+    curr = prev + curr;
+    prev = curr - prev;
+  }
+  //if (isFib(num)) oddFib += num;
+  return oddFib;
+}
+
+sumFibs(4);  
+
+<--- Next Solution ----->
+
+function sumFibs(num) {
+  var first = 0,
+      second = 1,
+      fibonacci = 1,
+      sum = 1; // We set this to one, since we are skipping the first 1 in the sequence.
+ 
+  while (first + second <= num) {
+    fibonacci = first + second;
+    first = second;
+    second = fibonacci;
+    if (fibonacci % 2 !== 0) {  // If a number % 2 is 0, the number is even, else, it is odd!
+      sum += fibonacci;  // Same as sum = sum + fibonacci;
+    }
+  }
+ 
+  return sum; // We return the total sum in hopes that it is correct.
+}
+
+<----Next Solution---->
+
+function sumFibs(num) {
+ 
+var numA = 0;
+var numB = 1;
+var sum = 0;
+   
+  while (numB <= num) {
+   // check if the number is odd
+    if (numB %2 !==0) {
+   // add to sum
+      sum += numB;
+    }
+   // record added value before changing the num values
+    var added = numA + numB;
+    
+    numA = numB
+  // the next Fibonacci number is the sum of the previous two    
+  numB = added;
+  }
+   
+ return sum;
+}
+
+<---- Next solution----->
+
+function sumFibs(num) {
+
+   var a = 0, b = 1, c = 1, sum = 0;
+   var arr = [0];
+
+   while (c <= num) {
+     arr.push(c);
+     c = a + b;
+     a = b; 
+     b = c;       
+     }
+
+   var odds = arr.filter(function(value, index, array){
+       return value%2 == 1;
+   });
+
+   var total = odds.reduce(function(a,b){
+       return(a+b);
+   });
+
+   return total;
+
+   }
+
+sumFibs(4);
