@@ -1,1 +1,1 @@
-# practice
+# Javascript Intermediate Algorithm Scripting
